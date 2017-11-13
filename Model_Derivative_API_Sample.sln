@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model_Derivative_API_Sample", "Model_Derivative_API_Sample\Model_Derivative_API_Sample.csproj", "{70289692-A837-4F55-B88B-21905D884ED1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autodesk.Forge", "forge-api-dotnet-client-master\src\Autodesk.Forge\Autodesk.Forge.csproj", "{1F96C009-0C16-429F-A3A9-1A96ECEA1F93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70289692-A837-4F55-B88B-21905D884ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70289692-A837-4F55-B88B-21905D884ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70289692-A837-4F55-B88B-21905D884ED1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70289692-A837-4F55-B88B-21905D884ED1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F96C009-0C16-429F-A3A9-1A96ECEA1F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F96C009-0C16-429F-A3A9-1A96ECEA1F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F96C009-0C16-429F-A3A9-1A96ECEA1F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F96C009-0C16-429F-A3A9-1A96ECEA1F93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {156BE2FC-DECE-456B-9254-D9D1A3696B8E}
+	EndGlobalSection
+EndGlobal

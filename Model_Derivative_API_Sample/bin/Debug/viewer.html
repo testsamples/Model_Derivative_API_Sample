@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.css"></script>
+	<link rel="stylesheet" href="https://developer.api.autodesk.com/viewingservice/v1/viewers/style.min.css" />
+	<script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
+</head>
+<body onload="initialize()">
+<div id="viewer" style="position:absolute; width:90%; height:90%;"></div>
+<script>
+	function authMe () { return ('eyJhbGciOiJIUzI1NiIsImtpZCI6Imp3dF9zeW1tZXRyaWNfa2V5In0.eyJjbGllbnRfaWQiOiJKUjd4R0dyOUhtREpJVTZBYnN0a2tadGVlMGoxd2VReSIsImV4cCI6MTUxMDMwNzQ0Niwic2NvcGUiOlsiZGF0YTpyZWFkIiwiZGF0YTp3cml0ZSIsImJ1Y2tldDpjcmVhdGUiLCJidWNrZXQ6cmVhZCJdLCJhdWQiOiJodHRwczovL2F1dG9kZXNrLmNvbS9hdWQvand0ZXhwNjAiLCJqdGkiOiJlNjBpdzNaZVFYTUdCck1nNVFjaDFINGNyb0tjS3lWMERxaWxXRXNNRkFjMkdxeVJyMWVvUVVNSGVvdTU0a1RXIn0.6tW5PANw6DHYnS36e6bvcUH2Y857SHewIfnJg34UwvE') ; }
+
+	function initialize () {
+		var options ={
+			'document' : "urn:dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6YXUtc2FtcGxlLWJ1Y2tldC0xanI3eGdncjlobWRqaXU2YWJzdGtrenRlZTBqMXdlcXkvT2ZmaWNlLnJ2dA",
+			'env': 'AutodeskProduction',
+			'getAccessToken': authMe
+		} ;
+		var viewerElement =document.getElementById ('viewer') ;
+		//var viewer =new Autodesk.Viewing.Viewer3D (viewerElement, {}) ; / No toolbar
+		var viewer =new Autodesk.Viewing.Private.GuiViewer3D (viewerElement, {}) ; // With toolbar
+		Autodesk.Viewing.Initializer (options, function () {
+			viewer.initialize () ;
+			loadDocument (viewer, options.document) ;
+		}) ;
+	}
+	function loadDocument (viewer, documentId) {
+		// Find the first 3d geometry and load that.
+		Autodesk.Viewing.Document.load (
+			documentId,
+			function (doc) { // onLoadCallback
+				var geometryItems =[] ;
+				geometryItems =Autodesk.Viewing.Document.getSubItemsWithProperties (
+					doc.getRootItem (),
+					{ 'type' : 'geometry', 'role' : '3d' },
+					true
+				) ;
+				if ( geometryItems.length <= 0 ) {
+					geometryItems =Autodesk.Viewing.Document.getSubItemsWithProperties (
+						doc.getRootItem (),
+						{ 'type': 'geometry', 'role': '2d' },
+						true
+					) ;
+				}
+				if ( geometryItems.length > 0 )
+					viewer.load (
+						doc.getViewablePath (geometryItems [0])//,
+						//null, null, null,
+						//doc.acmSessionId /*session for DM*/
+					) ;
+			},
+			function (errorMsg) { // onErrorCallback
+				alert("Load Error: " + errorMsg) ;
+			}
+		) ;
+	}
+</script>
+</body>
+</html>
